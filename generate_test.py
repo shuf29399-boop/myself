@@ -491,6 +491,27 @@ def render_html(config):
             "accent": "#7f9a8a",
             "button_text": "#fffdf7",
         }
+    elif config.get("style") == "city-life":
+        colors = {
+            "text": "#33423d",
+            "bg": "linear-gradient(180deg, #fff9f2 0%, #f8faf4 48%, #f3eee8 100%)",
+            "tag_bg": "transparent",
+            "tag_text": "#718a7d",
+            "sub": "#748078",
+            "panel_border": "rgba(126, 151, 137, 0.34)",
+            "panel_shadow": "0 18px 46px rgba(70, 91, 80, 0.12)",
+            "notice": "#818982",
+            "progress": "#dde9e0",
+            "primary": "#587568",
+            "secondary": "#f2ddd5",
+            "secondary_text": "#955f52",
+            "option_bg": "rgba(255, 255, 255, 0.8)",
+            "option_hover": "#f2f7f2",
+            "result": "#b06658",
+            "share_bg": "rgba(249, 231, 224, 0.72)",
+            "accent": "#d59684",
+            "button_text": "#fffdf8",
+        }
     elif config.get("style") == "pink":
         colors = {
             "text": "#34232b",
@@ -640,9 +661,9 @@ def render_html(config):
       margin: 36px 0 34px;
     }}
     .dimension {{
-      border: 1px solid rgba(215, 140, 166, 0.42);
+      border: 1px solid {colors["panel_border"]};
       background: rgba(255, 255, 255, 0.56);
-      color: #9b5c73;
+      color: {colors["primary"]};
       min-height: 62px;
       display: flex;
       align-items: center;

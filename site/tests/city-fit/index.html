@@ -1,0 +1,575 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>你适合留在小城市，还是去大城市闯一闯？</title>
+  <style>
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      font-family: -apple-system, BlinkMacSystemFont, "PingFang SC", "Microsoft YaHei", sans-serif;
+      color: #33423d;
+      background: linear-gradient(180deg, #fff9f2 0%, #f8faf4 48%, #f3eee8 100%);
+      line-height: 1.7;
+    }
+    body::before {
+      content: "";
+      position: fixed;
+      inset: 0;
+      pointer-events: none;
+      background:
+        radial-gradient(circle at 18% 10%, rgba(255, 199, 216, 0.36), transparent 28%),
+        radial-gradient(circle at 86% 18%, rgba(223, 232, 218, 0.55), transparent 24%),
+        radial-gradient(circle at 50% 92%, rgba(196, 212, 196, 0.32), transparent 32%);
+      z-index: -1;
+    }
+    .page {
+      width: min(760px, 100%);
+      margin: 0 auto;
+      padding: 44px 22px 56px;
+    }
+    .hero {
+      padding: 28px 0 26px;
+      text-align: center;
+    }
+    .tag {
+      display: inline-block;
+      padding: 0;
+      background: transparent;
+      color: #718a7d;
+      font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+      font-size: 15px;
+      letter-spacing: 0.2em;
+      margin-bottom: 36px;
+    }
+    h1 {
+      margin: 0;
+      font-size: clamp(34px, 7vw, 48px);
+      line-height: 1.25;
+      letter-spacing: 0;
+      font-weight: 900;
+    }
+    .subtitle {
+      margin: 24px 0 0;
+      color: #748078;
+      font-size: clamp(18px, 4.5vw, 24px);
+      font-weight: 700;
+      line-height: 1.65;
+    }
+    .divider {
+      width: 92px;
+      height: 1px;
+      background: #cfd5d8;
+      margin: 44px auto 0;
+    }
+    .panel {
+      background: rgba(255, 255, 255, 0.78);
+      border: 1px solid rgba(126, 151, 137, 0.34);
+      border-radius: 18px;
+      padding: 28px;
+      box-shadow: 0 18px 46px rgba(70, 91, 80, 0.12);
+      backdrop-filter: blur(10px);
+    }
+    .intro-panel {
+      background: transparent;
+      border: 0;
+      box-shadow: none;
+      padding: 20px 0 0;
+      font-size: clamp(17px, 4.2vw, 22px);
+      color: #654654;
+      line-height: 1.95;
+    }
+    .intro-panel p {
+      margin: 0 0 22px;
+    }
+    .value {
+      margin-top: 22px;
+      color: #33423d;
+      font-weight: 850;
+    }
+    .dimensions {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 14px;
+      margin: 36px 0 34px;
+    }
+    .dimension {
+      border: 1px solid rgba(126, 151, 137, 0.34);
+      background: rgba(255, 255, 255, 0.56);
+      color: #587568;
+      min-height: 62px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: clamp(16px, 4vw, 20px);
+      font-weight: 750;
+      border-radius: 14px;
+    }
+    .notice {
+      margin: 24px 0 0;
+      color: #818982;
+      font-size: 14px;
+    }
+    .progress {
+      height: 8px;
+      background: #dde9e0;
+      border-radius: 999px;
+      overflow: hidden;
+      margin: 18px 0;
+    }
+    .bar {
+      height: 100%;
+      width: 0;
+      background: #587568;
+      transition: width .25s ease;
+    }
+    .question-count {
+      color: #818982;
+      font-size: 14px;
+      margin-bottom: 8px;
+    }
+    .question {
+      font-size: 20px;
+      font-weight: 700;
+      margin-bottom: 16px;
+    }
+    .option {
+      width: 100%;
+      text-align: left;
+      border: 1px solid rgba(126, 151, 137, 0.34);
+      background: rgba(255, 255, 255, 0.8);
+      color: #33423d;
+      padding: 14px 14px;
+      border-radius: 8px;
+      margin: 10px 0;
+      font-size: 16px;
+      cursor: pointer;
+    }
+    .option:hover {
+      border-color: #587568;
+      background: #f2f7f2;
+    }
+    .actions {
+      display: flex;
+      gap: 10px;
+      margin-top: 16px;
+    }
+    button.primary, button.secondary {
+      border: 0;
+      border-radius: 16px;
+      padding: 18px 16px;
+      font-size: 22px;
+      font-weight: 850;
+      cursor: pointer;
+    }
+    .primary {
+      background: #587568;
+      color: #fffdf8;
+      width: 100%;
+      box-shadow: 0 14px 30px rgba(200, 93, 132, 0.24);
+    }
+    .secondary {
+      background: #f2ddd5;
+      color: #955f52;
+    }
+    .result-title {
+      font-size: 24px;
+      font-weight: 800;
+      margin: 4px 0 8px;
+    }
+    .result-summary {
+      color: #b06658;
+      font-weight: 700;
+      margin-bottom: 16px;
+    }
+    .result-section {
+      border-top: 1px solid rgba(126, 151, 137, 0.34);
+      padding-top: 14px;
+      margin-top: 14px;
+    }
+    .share {
+      background: rgba(249, 231, 224, 0.72);
+      border-left: 4px solid #587568;
+      padding: 12px;
+      border-radius: 6px;
+      margin-top: 18px;
+    }
+    .report-panel {
+      background: linear-gradient(180deg, rgba(255, 253, 247, 0.96), rgba(241, 246, 240, 0.94));
+      color: #33423d;
+      border-color: rgba(126, 151, 137, 0.34);
+      box-shadow: 0 24px 70px rgba(65, 78, 68, 0.16);
+    }
+    .report-top {
+      display: flex;
+      justify-content: space-between;
+      gap: 12px;
+      color: #587568;
+      font-size: 13px;
+      font-weight: 800;
+      letter-spacing: 0.08em;
+      border-bottom: 1px solid rgba(126, 151, 137, 0.34);
+      padding-bottom: 16px;
+      margin-bottom: 22px;
+    }
+    .type-pill {
+      display: inline-block;
+      padding: 5px 14px;
+      border-radius: 999px;
+      background: #f2ddd5;
+      color: #955f52;
+      font-size: 13px;
+      font-weight: 800;
+    }
+    .report-name {
+      margin: 12px 0 4px;
+      font-size: clamp(34px, 8vw, 52px);
+      line-height: 1.15;
+      font-weight: 950;
+      letter-spacing: 0;
+      text-align: center;
+    }
+    .report-subtitle {
+      text-align: center;
+      color: #748078;
+      font-size: 17px;
+      margin-bottom: 18px;
+    }
+    .report-score {
+      text-align: center;
+      color: #587568;
+      font-size: 36px;
+      line-height: 1.1;
+      font-weight: 950;
+      margin: 18px 0;
+    }
+    .report-score span {
+      color: #818982;
+      font-size: 15px;
+      font-weight: 750;
+      margin-left: 8px;
+    }
+    .core-box {
+      border: 1px solid rgba(126, 151, 137, 0.34);
+      background: rgba(255, 255, 255, 0.62);
+      border-radius: 8px;
+      padding: 18px;
+      margin: 22px 0;
+    }
+    .core-label {
+      color: #587568;
+      font-weight: 850;
+      margin-bottom: 8px;
+    }
+    .gold-line {
+      color: #b06658;
+      text-align: center;
+      font-weight: 850;
+      margin: 20px 0 18px;
+    }
+    .locked-report {
+      position: relative;
+      overflow: hidden;
+      border-radius: 10px;
+      border: 1px solid rgba(126, 151, 137, 0.34);
+      background: rgba(255, 255, 255, 0.46);
+      padding: 18px;
+      max-height: 220px;
+      margin-top: 18px;
+    }
+    .full-report {
+      border-radius: 10px;
+      border: 1px solid rgba(126, 151, 137, 0.34);
+      background: rgba(255, 255, 255, 0.58);
+      padding: 18px;
+      margin-top: 18px;
+    }
+    .full-report-title {
+      color: #587568;
+      font-weight: 950;
+      font-size: 18px;
+      margin-bottom: 10px;
+    }
+    .full-report .locked-item:first-of-type {
+      border-top: 0;
+    }
+    .locked-content {
+      filter: blur(4px);
+      opacity: 0.56;
+    }
+    .locked-item {
+      border-top: 1px solid rgba(126, 151, 137, 0.34);
+      padding: 12px 0;
+    }
+    .lock-overlay {
+      position: absolute;
+      inset: auto 0 0;
+      padding: 54px 18px 18px;
+      text-align: center;
+      background: linear-gradient(180deg, rgba(255, 253, 247, 0) 0%, rgba(246, 248, 242, 0.94) 44%, #f6f8f2 100%);
+    }
+    .lock-icon {
+      width: 36px;
+      height: 36px;
+      border-radius: 999px;
+      border: 1px solid rgba(126, 151, 137, 0.34);
+      color: #587568;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      margin-bottom: 10px;
+      font-size: 20px;
+    }
+    .unlock-title {
+      color: #33423d;
+      font-size: 18px;
+      font-weight: 900;
+    }
+    .unlock-text {
+      color: #587568;
+      font-size: 13px;
+      margin-top: 5px;
+    }
+    .report-actions {
+      display: grid;
+      gap: 10px;
+      margin-top: 18px;
+    }
+    .report-button {
+      border: 0;
+      border-radius: 8px;
+      padding: 16px;
+      background: #587568;
+      color: #fffdf8;
+      font-size: 18px;
+      font-weight: 950;
+      cursor: pointer;
+    }
+    .report-secondary {
+      border: 1px solid rgba(126, 151, 137, 0.34);
+      border-radius: 8px;
+      padding: 14px;
+      background: transparent;
+      color: #587568;
+      font-size: 15px;
+      font-weight: 850;
+      cursor: pointer;
+    }
+    .hidden { display: none; }
+    .footer {
+      text-align: center;
+      color: #818982;
+      font-size: 12px;
+      margin-top: 26px;
+    }
+    @media (max-width: 520px) {
+      .page {
+        padding: 36px 24px 48px;
+      }
+      .panel {
+        padding: 22px;
+      }
+      .dimensions {
+        gap: 10px;
+      }
+      .dimension {
+        min-height: 54px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <main class="page">
+    <section class="hero">
+      <span class="tag">• CITY LIFE FIT TEST •</span>
+      <h1>你适合留在小城市，还是去大城市闯一闯？</h1>
+      <div class="subtitle">
+      <div>30 道题，看清哪一种城市更能接住你的人生</div>
+      <div>不用纠结标准答案，凭第一感觉选就好。</div>
+      </div>
+      <div class="divider"></div>
+    </section>
+
+    <section id="start" class="intro-panel">
+      <p>大城市有更多机会，也有更高的成本和更快的节奏。</p>
+      <p>小城市离生活更近，却也可能让想突破的人感到空间有限。</p>
+      <p>真正重要的不是哪里更好，而是哪一种城市能接住你现在的野心、关系和生活方式。</p>
+      <p class="value">这个测试会从机会密度、节奏耐受、关系支持、长期归属四个维度，帮你判断：你更适合在大城市拓展、小城市扎根，还是为自己设计一条更灵活的城市路径。</p>
+
+      <div class="dimensions">
+        <div class="dimension">机会密度</div>
+        <div class="dimension">节奏耐受</div>
+        <div class="dimension">关系支持</div>
+        <div class="dimension">长期归属</div>
+      </div>
+      <button class="primary" onclick="startTest()">开始测试</button>
+      <p class="notice">娱乐测试，仅供自我探索参考，不构成心理或职业诊断。</p>
+    </section>
+
+    <section id="quiz" class="panel hidden">
+      <div class="question-count" id="count"></div>
+      <div class="progress"><div class="bar" id="bar"></div></div>
+      <div class="question" id="question"></div>
+      <div id="options"></div>
+      <div class="actions">
+        <button class="secondary" onclick="goBack()">上一题</button>
+      </div>
+    </section>
+
+    <section id="result" class="panel hidden"></section>
+
+    <div class="footer">生成时间：2026-06-30 21:43</div>
+  </main>
+
+  <script>
+    const TEST = {"slug": "city-fit", "theme": "你适合留在小城市，还是去大城市闯一闯？", "eyebrow": "CITY LIFE FIT TEST", "title": "你适合留在小城市，还是去大城市闯一闯？", "subtitle": "30 道题，看清哪一种城市更能接住你的人生", "subtitle_lines": ["30 道题，看清哪一种城市更能接住你的人生", "不用纠结标准答案，凭第一感觉选就好。"], "price_hint": "娱乐测试，仅供自我探索参考，不构成心理或职业诊断。", "intro": "大城市有更多机会，也有更高的成本和更快的节奏。", "intro_paragraphs": ["大城市有更多机会，也有更高的成本和更快的节奏。", "小城市离生活更近，却也可能让想突破的人感到空间有限。", "真正重要的不是哪里更好，而是哪一种城市能接住你现在的野心、关系和生活方式。"], "value_statement": "这个测试会从机会密度、节奏耐受、关系支持、长期归属四个维度，帮你判断：你更适合在大城市拓展、小城市扎根，还是为自己设计一条更灵活的城市路径。", "dimensions": ["机会密度", "节奏耐受", "关系支持", "长期归属"], "style": "city-life", "share_line": "适合你的城市，不一定最繁华，但一定能让你的努力和生活彼此成全。", "questions": [{"text": "如果两个城市收入差距明显，你更可能怎么选？", "options": [{"text": "去收入更高、机会更多的城市试一试", "type": "A"}, {"text": "留在生活成本更低、日子更稳的城市", "type": "B"}, {"text": "先远程或短住体验，再决定长期落点", "type": "C"}, {"text": "看人生阶段，年轻时闯一闯，以后再调整", "type": "D"}]}, {"text": "你理想中的通勤时间更接近哪一种？", "options": [{"text": "可以接受一小时左右，只要工作值得", "type": "A"}, {"text": "最好二十分钟内，把时间留给生活", "type": "B"}, {"text": "工作地点灵活，能自由安排最好", "type": "C"}, {"text": "目前能接受长通勤，未来希望慢下来", "type": "D"}]}, {"text": "面对陌生城市和新圈子，你通常是什么感觉？", "options": [{"text": "兴奋，陌生意味着新的可能", "type": "A"}, {"text": "有压力，我更依赖熟悉的人和环境", "type": "B"}, {"text": "短期新鲜，长期要看能否建立稳定连接", "type": "C"}, {"text": "阶段性愿意冒险，但不会一直漂着", "type": "D"}]}, {"text": "你对城市生活最看重什么？", "options": [{"text": "行业机会、资源和成长速度", "type": "A"}, {"text": "居住舒适、开销可控和烟火气", "type": "B"}, {"text": "既有机会，也能保留自己的生活节奏", "type": "C"}, {"text": "不同阶段满足不同需求，不必一次定终身", "type": "D"}]}, {"text": "周末更让你充电的方式是什么？", "options": [{"text": "看展、参加活动、认识不同的人", "type": "A"}, {"text": "陪家人朋友、逛熟悉的小店和公园", "type": "B"}, {"text": "一半探索城市，一半安静独处", "type": "C"}, {"text": "现在喜欢热闹，累了会回到安静生活", "type": "D"}]}, {"text": "如果家人希望你留在身边，你会怎么考虑？", "options": [{"text": "先争取自己的发展，距离可以想办法解决", "type": "A"}, {"text": "家人的陪伴很重要，我愿意把它放在前面", "type": "B"}, {"text": "寻找交通方便或能经常往返的折中城市", "type": "C"}, {"text": "先出去积累几年，再决定是否回到家人身边", "type": "D"}]}, {"text": "你能接受为了更好的机会频繁跳槽吗？", "options": [{"text": "能，职业上升期应该主动争取", "type": "A"}, {"text": "不太能，我更喜欢稳定积累和熟人环境", "type": "B"}, {"text": "可以换，但希望生活基地保持稳定", "type": "C"}, {"text": "年轻时可以，到了某个阶段会降低频率", "type": "D"}]}, {"text": "高房租会怎样影响你的选择？", "options": [{"text": "只要机会足够好，我愿意承担一段时间", "type": "A"}, {"text": "会明显降低幸福感，我更想住得宽松", "type": "B"}, {"text": "会计算收入、成长和生活质量的综合回报", "type": "C"}, {"text": "短期可以忍受，长期一定会换更舒服的落点", "type": "D"}]}, {"text": "你对独居在陌生城市的接受度如何？", "options": [{"text": "很高，我享受独立和自己建立生活", "type": "A"}, {"text": "比较低，有熟悉的人在身边会安心很多", "type": "B"}, {"text": "可以独居，但需要稳定社群和规律生活", "type": "C"}, {"text": "阶段性可以，长期还是想靠近重要的人", "type": "D"}]}, {"text": "哪种工作状态更能激发你？", "options": [{"text": "竞争强、变化快、优秀的人很多", "type": "A"}, {"text": "关系稳定、节奏可预期、能长期深耕", "type": "B"}, {"text": "主业稳定，同时保留线上或副业机会", "type": "C"}, {"text": "前期高强度积累，后期换取更多自主权", "type": "D"}]}, {"text": "当城市节奏很快时，你通常会怎样？", "options": [{"text": "会被带动，反而更有行动力", "type": "A"}, {"text": "容易疲惫，生活会失去自己的节奏", "type": "B"}, {"text": "能适应，但需要固定的恢复空间", "type": "C"}, {"text": "短期冲刺没问题，长期会主动降速", "type": "D"}]}, {"text": "你怎么看待熟人社会？", "options": [{"text": "有点束缚，我更喜欢匿名和多元的环境", "type": "A"}, {"text": "有安全感，办事和生活都更有人情味", "type": "B"}, {"text": "有支持也有边界，适度就好", "type": "C"}, {"text": "某些阶段需要逃离，某些阶段又会想念", "type": "D"}]}, {"text": "如果工作发展一般，但生活很舒服，你会满足吗？", "options": [{"text": "不会，我会担心自己错过成长窗口", "type": "A"}, {"text": "会，稳定舒服本身就是重要价值", "type": "B"}, {"text": "短期会，但仍会在线上寻找成长空间", "type": "C"}, {"text": "看阶段，先发展和先生活都可能是答案", "type": "D"}]}, {"text": "你更喜欢哪种社交环境？", "options": [{"text": "不断遇见新朋友和不同领域的人", "type": "A"}, {"text": "有几个认识很久、随时能见面的朋友", "type": "B"}, {"text": "小而稳定的圈子，也保留认识新人的机会", "type": "C"}, {"text": "人生前期扩大圈子，后来留下真正重要的人", "type": "D"}]}, {"text": "你对文化、医疗、教育资源的需求高吗？", "options": [{"text": "很高，资源密度会直接影响我的选择", "type": "A"}, {"text": "够用就好，我更在意日常便利和低压力", "type": "B"}, {"text": "关键资源需要可达，不必每天身处中心", "type": "C"}, {"text": "现在需求高，未来可能更看重舒适和陪伴", "type": "D"}]}, {"text": "哪种居住空间更让你有幸福感？", "options": [{"text": "位置方便的小房子，出门就是丰富生活", "type": "A"}, {"text": "宽敞安静的家，有阳光也有自己的空间", "type": "B"}, {"text": "不追求市中心，但交通和配套要平衡", "type": "C"}, {"text": "年轻时住得紧凑，未来想换更松弛的空间", "type": "D"}]}, {"text": "面对城市里的竞争，你更接近哪种状态？", "options": [{"text": "竞争会让我看见差距，也推动我成长", "type": "A"}, {"text": "长期竞争会消耗我，我更适合稳定节奏", "type": "B"}, {"text": "只在重要目标上竞争，其他地方保持松弛", "type": "C"}, {"text": "愿意集中拼几年，但不会把竞争当成终身状态", "type": "D"}]}, {"text": "如果事业机会和恋人所在地冲突，你会怎么选？", "options": [{"text": "优先抓住难得的事业窗口", "type": "A"}, {"text": "优先经营稳定关系和共同生活", "type": "B"}, {"text": "先尝试异地或双城，给双方一个验证期", "type": "C"}, {"text": "看关系和事业所处阶段，再决定谁先调整", "type": "D"}]}, {"text": "你最害怕哪一种城市生活？", "options": [{"text": "机会太少，几年后发现自己没有成长", "type": "A"}, {"text": "开销太大，一直忙却没有真正生活", "type": "B"}, {"text": "被迫二选一，失去调整空间", "type": "C"}, {"text": "在不合适的阶段，被一个城市长期困住", "type": "D"}]}, {"text": "你对生活便利的理解更接近什么？", "options": [{"text": "选择多、服务多、任何需求都能快速满足", "type": "A"}, {"text": "距离近、成本低、日常事情不折腾", "type": "B"}, {"text": "线上线下都方便，不必依赖城市中心", "type": "C"}, {"text": "目前追求效率，以后更想要简单和从容", "type": "D"}]}, {"text": "你愿意为梦想承受多久的不确定？", "options": [{"text": "三到五年，只要能看到成长和可能", "type": "A"}, {"text": "不想太久，我需要稳定生活作为底座", "type": "B"}, {"text": "会给自己明确期限和退出方案", "type": "C"}, {"text": "年轻时可以更久，之后会重新评估投入产出", "type": "D"}]}, {"text": "你希望孩子或未来家庭生活在哪里？", "options": [{"text": "资源丰富、选择多、视野更开阔的地方", "type": "A"}, {"text": "环境安稳、陪伴充足、生活压力较小的地方", "type": "B"}, {"text": "核心资源可达，但日常生活不必过度拥挤", "type": "C"}, {"text": "先根据事业发展，再为家庭阶段重新选择", "type": "D"}]}, {"text": "如果可以远程工作，你会住在哪里？", "options": [{"text": "仍住大城市，享受资源和人群密度", "type": "A"}, {"text": "搬到小城市，让收入更耐花、生活更舒服", "type": "B"}, {"text": "在不同城市短住，找到最适合自己的组合", "type": "C"}, {"text": "先体验几年流动生活，再选择长期基地", "type": "D"}]}, {"text": "你对城市身份和归属感的需求是什么？", "options": [{"text": "在哪里成长、被看见，哪里就是我的城市", "type": "A"}, {"text": "熟悉的方言、人情和生活方式让我安心", "type": "B"}, {"text": "归属感可以由自己建立，不只来自出生地", "type": "C"}, {"text": "归属会随阶段变化，我允许自己重新选择", "type": "D"}]}, {"text": "遇到职业瓶颈时，你第一反应是什么？", "options": [{"text": "换平台、换圈子，去机会更密集的地方", "type": "A"}, {"text": "留在熟悉环境，把生活和能力慢慢稳住", "type": "B"}, {"text": "先线上拓展资源，不急着搬家", "type": "C"}, {"text": "给自己一个外出窗口，验证后再决定去留", "type": "D"}]}, {"text": "你更希望别人怎样形容你的生活？", "options": [{"text": "有见识、有成长、一直在打开新可能", "type": "A"}, {"text": "踏实、舒服、有稳定的人和自己的小日子", "type": "B"}, {"text": "既有事业选择，也没有牺牲生活质量", "type": "C"}, {"text": "懂得在不同阶段选择最适合自己的节奏", "type": "D"}]}, {"text": "一座城市最能留住你的是什么？", "options": [{"text": "持续出现的新机会和优秀同行", "type": "A"}, {"text": "重要的人、熟悉感和低压力生活", "type": "B"}, {"text": "能兼顾工作发展与内心安稳的空间", "type": "C"}, {"text": "它是否适合我当下，而不是是否永远适合", "type": "D"}]}, {"text": "如果现在搬去另一座城市，你最需要什么底气？", "options": [{"text": "一份有上升空间的工作或清晰目标", "type": "A"}, {"text": "稳定收入、熟人支持和可控生活成本", "type": "B"}, {"text": "可进可退的计划，以及几个月缓冲金", "type": "C"}, {"text": "一个明确期限，知道何时复盘、何时调整", "type": "D"}]}, {"text": "你对未来五年的城市想象更接近哪一种？", "options": [{"text": "进入更大的平台，让能力和收入上一个台阶", "type": "A"}, {"text": "在喜欢的小城安顿下来，建立稳定生活", "type": "B"}, {"text": "拥有一个生活基地，同时连接更多城市机会", "type": "C"}, {"text": "先去需要我的地方成长，再回到想生活的地方", "type": "D"}]}, {"text": "做完这个测试，你最想确认什么？", "options": [{"text": "我是不是应该去更大的城市争取机会", "type": "A"}, {"text": "我是不是更适合留在小城市好好生活", "type": "B"}, {"text": "我能不能不二选一，设计自己的双城方案", "type": "C"}, {"text": "我现在适合闯，还是已经到了该安顿的阶段", "type": "D"}]}], "results": {"A": {"name": "大城市拓展型", "summary": "你需要的不是单纯的热闹，而是更高密度的机会、信息和成长反馈。", "sections": ["你对变化、新资源和优秀同行有天然的敏感度。环境越开放、选择越丰富，你越容易被激活，也更愿意为长期上升承担一段时间的压力。", "适合你的是有行业聚集度、职业通道和多元生活的大城市。但要警惕把高强度当成上进，给自己设置清晰的收入、成长和健康底线。", "未来 7 天，列出你想去城市的 3 个真实机会，再计算房租、通勤和储备金。让向往从想象变成可验证的计划。"]}, "B": {"name": "小城市扎根型", "summary": "你真正看重的不是城市级别，而是生活能否稳定、松弛并与重要的人相连。", "sections": ["你更容易在熟悉关系、低生活成本和可控节奏里积累幸福感。对你来说，房间的阳光、家人的陪伴和有余力的日常，比持续竞争更重要。", "适合你的不是“随便躺平”，而是在小城市建立有成长性的生活：稳定主业、线上能力或一项可长期经营的副业，都会让你的选择更有底气。", "未来 7 天，盘点你所在城市能利用的资源与缺口，找出一件既能留在当地、又能继续增长收入或能力的事。"]}, "C": {"name": "双城弹性型", "summary": "你不适合被迫二选一，更适合把生活基地和事业机会分开设计。", "sections": ["你既需要成长空间，也不愿意把全部生活交给拥挤和高成本。你擅长权衡，更适合远程工作、阶段短住、通勤城市或“生活在小城，连接大城市资源”的组合。", "你的优势是灵活，卡点则是容易一直比较、迟迟不落地。真正有效的折中不是拖延，而是设定时间、预算和验证指标。", "未来 7 天，设计一个 90 天双城实验：确定生活基地、工作连接方式、往返频率和复盘日期。"]}, "D": {"name": "阶段迁徙型", "summary": "你适合的城市会随人生阶段变化，现在的答案不必成为一生的答案。", "sections": ["你愿意在需要成长时去更大的地方，也能在需要安顿时回到更舒服的生活。你真正擅长的是看见阶段任务，而不是用一个城市证明自己。", "你适合给每次迁徙一个明确目的：积累履历、提高收入、建立关系或恢复生活。目标完成后，就允许自己重新选择。", "未来 7 天，写下你未来 2 年最重要的阶段目标，并判断哪座城市最能帮助它发生，而不是哪座城市听起来更体面。"]}}, "report_preview": {"enabled": true, "demo_unlocked": true, "label": "你的专属城市适配报告", "kicker": "CITY · REPORT", "unlock_title": "完整报告 · 查看你的城市适配分析", "unlock_text": "完整报告将展开你的城市优势、潜在消耗、适合路径和未来 7 天建议。", "button_text": "查看完整报告演示版", "reports": {"A": {"name": "大城市拓展型", "index_label": "机会拓展指数", "base_score": 88, "summary": "你需要的不是单纯的热闹，而是更高密度的机会、信息和成长反馈。", "core": "你适合去机会更密集的地方，不是因为小城市不够好，而是你的行动力需要更大的舞台和更快的真实反馈。", "gold": "你想去的不是大城市，你想去的是更大的可能。", "locked": ["你的城市优势：对新环境适应快，能从信息、人群和竞争中获得动力。", "你的潜在消耗：容易把忙碌误认为成长，并低估通勤、房租和孤独的长期成本。", "适合你的路径：优先选择行业密度高、成长通道清晰的城市，而不是只看城市名气。", "未来 7 天建议：完成目标城市的机会清单、生活预算和三个月行动计划。"]}, "B": {"name": "小城市扎根型", "index_label": "生活扎根指数", "base_score": 86, "summary": "你真正看重的不是城市级别，而是生活能否稳定、松弛并与重要的人相连。", "core": "你不是没有野心，你只是更希望成长能发生在不牺牲生活的前提下。稳定关系、低成本和可控节奏，会让你的能力发挥得更久。", "gold": "你要的不是躺平，是一种不会把自己耗空的生活。", "locked": ["你的城市优势：擅长经营长期关系与稳定日常，容易形成可持续的生活系统。", "你的潜在卡点：可能因为害怕变化，错过本可以低成本尝试的新机会。", "适合你的路径：以小城市为生活底座，同时发展线上工作、个人品牌或区域服务。", "未来 7 天建议：找到一个不必离开当地，也能增加收入或成长反馈的小项目。"]}, "C": {"name": "双城弹性型", "index_label": "城市弹性指数", "base_score": 84, "summary": "你不适合被迫二选一，更适合把生活基地和事业机会分开设计。", "core": "你真正想要的是选择权：既能连接大城市的机会，也能保留让自己恢复能量的生活基地。", "gold": "你不必在野心和生活之间，只能选择一个。", "locked": ["你的城市优势：能看见不同城市的价值，适合远程、短住和跨城协作。", "你的潜在卡点：方案太多时容易停在比较阶段，没有真正测试任何一种。", "适合你的路径：建立稳定基地，再用固定频率连接目标城市的项目、人脉和资源。", "未来 7 天建议：做一份 90 天双城实验表，写清成本、频率、目标和退出条件。"]}, "D": {"name": "阶段迁徙型", "index_label": "阶段适配指数", "base_score": 87, "summary": "你适合的城市会随人生阶段变化，现在的答案不必成为一生的答案。", "core": "你不需要一次决定余生。对你而言，城市是完成阶段任务的容器，而不是必须终身坚持的身份。", "gold": "城市不是终身答案，它只是你这一阶段的合作者。", "locked": ["你的城市优势：能根据事业、关系和能量变化重新安排生活，不容易被单一标准绑住。", "你的潜在卡点：如果没有阶段目标，迁徙容易变成逃避和反复重启。", "适合你的路径：每次选择城市前，先写清这两年要完成的核心任务和离开条件。", "未来 7 天建议：定义未来两年的第一优先级，再用它筛选城市，而不是反过来。"]}}}};
+    let current = 0;
+    let answers = [];
+
+    function show(id) {
+      document.getElementById("start").classList.add("hidden");
+      document.getElementById("quiz").classList.add("hidden");
+      document.getElementById("result").classList.add("hidden");
+      document.getElementById(id).classList.remove("hidden");
+    }
+
+    function startTest() {
+      current = 0;
+      answers = [];
+      show("quiz");
+      renderQuestion();
+    }
+
+    function renderQuestion() {
+      const q = TEST.questions[current];
+      document.getElementById("count").textContent = `第 ${current + 1} / ${TEST.questions.length} 题`;
+      document.getElementById("bar").style.width = `${(current / TEST.questions.length) * 100}%`;
+      document.getElementById("question").textContent = q.text;
+      document.getElementById("options").innerHTML = q.options.map((opt, index) => `
+        <button class="option" onclick="chooseOption('${opt.type}')">${String.fromCharCode(65 + index)}. ${opt.text}</button>
+      `).join("");
+    }
+
+    function chooseOption(type) {
+      answers[current] = type;
+      if (current < TEST.questions.length - 1) {
+        current += 1;
+        renderQuestion();
+      } else {
+        showResult();
+      }
+    }
+
+    function goBack() {
+      if (current === 0) {
+        show("start");
+        return;
+      }
+      current -= 1;
+      renderQuestion();
+    }
+
+    function escapeText(value) {
+      return String(value || "").replace(/[&<>"']/g, char => ({
+        "&": "&amp;",
+        "<": "&lt;",
+        ">": "&gt;",
+        '"': "&quot;",
+        "'": "&#39;"
+      }[char]));
+    }
+
+    function renderReportPreview(result, winner, scores) {
+      const preview = TEST.report_preview;
+      const report = preview.reports[winner];
+      const topScore = scores[winner] || 0;
+      const score = Math.min(96, (report.base_score || 78) + Math.max(0, topScore - 8));
+      const locked = (report.locked || []).map(item => `<div class="locked-item">${escapeText(item)}</div>`).join("");
+      const fullReport = `
+        <div class="full-report">
+          <div class="full-report-title">完整报告演示版</div>
+          ${locked}
+          <div class="locked-item">专属提醒：不要急着证明自己能彻底改变，先做一个能带来真实反馈的小动作。你需要的不是更用力，而是把力气放到更值得的位置。</div>
+        </div>
+      `;
+      const lockedReport = `
+        <div class="locked-report">
+          <div class="locked-content">${locked}</div>
+          <div class="lock-overlay">
+            <div class="lock-icon">锁</div>
+            <div class="unlock-title">${escapeText(preview.unlock_title || "完整报告 · 解锁查看")}</div>
+            <div class="unlock-text">${escapeText(preview.unlock_text || "解锁后查看完整分析和行动建议")}</div>
+          </div>
+        </div>
+      `;
+      const reportBody = preview.demo_unlocked ? fullReport : lockedReport;
+      const primaryAction = preview.demo_unlocked
+        ? ""
+        : `<button class="report-button" onclick="unlockDemo('${winner}')">${escapeText(preview.button_text || "解锁完整报告")}</button>`;
+      return `
+        <div class="report-top">
+          <span>${escapeText(preview.label || "你的专属报告")}</span>
+          <span>${escapeText(preview.kicker || "REPORT")}</span>
+        </div>
+        <div style="text-align:center"><span class="type-pill">你的类型</span></div>
+        <div class="report-name">${escapeText(report.name || result.name)}</div>
+        <div class="report-subtitle">${escapeText(report.summary || result.summary)}</div>
+        <div class="report-score">${score}<span>${escapeText(report.index_label || "专属指数")}</span></div>
+        <div class="core-box">
+          <div class="core-label">核心结论</div>
+          <div>${escapeText(report.core || result.summary)}</div>
+        </div>
+        <div class="gold-line">「${escapeText(report.gold || TEST.share_line)}」</div>
+        ${reportBody}
+        <div class="report-actions">
+          ${primaryAction}
+          <button class="report-secondary" onclick="startTest()">重新测试</button>
+        </div>
+      `;
+    }
+
+    function unlockDemo(winner) {
+      const preview = TEST.report_preview;
+      const report = preview.reports[winner];
+      const full = (report.locked || []).map(item => `<div class="locked-item">${escapeText(item)}</div>`).join("");
+      document.querySelector(".locked-report").outerHTML = `
+        <div class="full-report">
+          <div class="full-report-title">完整报告已解锁</div>
+          ${full}
+          <div class="locked-item">专属提醒：不要急着证明自己能彻底改变，先做一个能带来真实反馈的小动作。你需要的不是更用力，而是把力气放到更值得的位置。</div>
+        </div>
+      `;
+      document.querySelector(".report-button").textContent = "已解锁完整报告";
+      document.querySelector(".report-button").disabled = true;
+      document.querySelector(".report-button").style.opacity = "0.72";
+    }
+
+    function showResult() {
+      const scores = { A: 0, B: 0, C: 0, D: 0 };
+      answers.forEach(type => scores[type] += 1);
+      const winner = Object.keys(scores).sort((a, b) => scores[b] - scores[a])[0];
+      const result = TEST.results[winner];
+      document.getElementById("bar").style.width = "100%";
+      if (TEST.report_preview && TEST.report_preview.enabled) {
+        document.getElementById("result").classList.add("report-panel");
+        document.getElementById("result").innerHTML = renderReportPreview(result, winner, scores);
+        show("result");
+        return;
+      }
+      document.getElementById("result").classList.remove("report-panel");
+      document.getElementById("result").innerHTML = `
+        <div class="question-count">你的测试结果</div>
+        <div class="result-title">${result.name}</div>
+        <div class="result-summary">${result.summary}</div>
+        ${result.sections.map(section => `<div class="result-section">${section}</div>`).join("")}
+        <div class="share">适合截图分享的一句话：适合你的城市，不一定最繁华，但一定能让你的努力和生活彼此成全。</div>
+        <div class="actions">
+          <button class="primary" onclick="startTest()">重新测试</button>
+        </div>
+      `;
+      show("result");
+    }
+  </script>
+</body>
+</html>
