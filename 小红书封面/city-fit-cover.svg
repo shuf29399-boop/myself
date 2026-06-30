@@ -1,0 +1,85 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1080" height="1440" viewBox="0 0 1080 1440">
+  <rect width="1080" height="1440" fill="#FBF7EF"/>
+
+  <circle cx="930" cy="170" r="138" fill="#E3ECE4"/>
+  <circle cx="92" cy="1120" r="176" fill="#F4DDD5"/>
+  <path d="M0 0H1080V32H0Z" fill="#647D70"/>
+
+  <g font-family="PingFang SC, Hiragino Sans GB, Microsoft YaHei, sans-serif">
+    <text x="92" y="132" fill="#6D8478" font-size="25" font-weight="700" letter-spacing="5">CITY LIFE FIT TEST</text>
+    <line x1="92" y1="164" x2="988" y2="164" stroke="#B9C7BE" stroke-width="2"/>
+
+    <text x="92" y="285" fill="#34443E" font-size="50" font-weight="600">你适合留在</text>
+    <text x="88" y="420" fill="#34443E" font-size="108" font-weight="900">小城市</text>
+    <text x="477" y="420" fill="#B46E60" font-size="64" font-weight="800">，还是去</text>
+    <text x="88" y="555" fill="#587568" font-size="108" font-weight="900">大城市</text>
+    <text x="520" y="555" fill="#34443E" font-size="78" font-weight="900">闯一闯？</text>
+
+    <text x="92" y="650" fill="#77837C" font-size="36" font-weight="600">30 道题，看清哪一种城市</text>
+    <text x="92" y="706" fill="#77837C" font-size="36" font-weight="600">更能接住你的人生</text>
+
+    <g transform="translate(92 790)">
+      <rect x="0" y="0" width="205" height="62" rx="31" fill="#E7EEE7"/>
+      <text x="102.5" y="41" text-anchor="middle" fill="#587568" font-size="27" font-weight="700">机会密度</text>
+      <rect x="222" y="0" width="205" height="62" rx="31" fill="#F4E2DB"/>
+      <text x="324.5" y="41" text-anchor="middle" fill="#A96356" font-size="27" font-weight="700">节奏耐受</text>
+      <rect x="444" y="0" width="205" height="62" rx="31" fill="#E7EEE7"/>
+      <text x="546.5" y="41" text-anchor="middle" fill="#587568" font-size="27" font-weight="700">关系支持</text>
+      <rect x="666" y="0" width="205" height="62" rx="31" fill="#F4E2DB"/>
+      <text x="768.5" y="41" text-anchor="middle" fill="#A96356" font-size="27" font-weight="700">长期归属</text>
+    </g>
+  </g>
+
+  <g transform="translate(0 920)">
+    <path d="M0 426C165 360 253 349 414 383C576 417 758 378 1080 258V520H0Z" fill="#DFE9E1"/>
+    <path d="M0 470C219 390 359 423 520 454C692 487 866 424 1080 338V520H0Z" fill="#C8D8CE"/>
+
+    <g transform="translate(70 162)">
+      <rect x="0" y="110" width="145" height="130" rx="4" fill="#FFFDF8" stroke="#779083" stroke-width="5"/>
+      <path d="M-18 110L72 36L164 110Z" fill="#C77A69"/>
+      <rect x="55" y="170" width="38" height="70" fill="#779083"/>
+      <rect x="15" y="142" width="30" height="30" fill="#EED3C9"/>
+      <rect x="105" y="142" width="24" height="30" fill="#EED3C9"/>
+      <circle cx="190" cy="202" r="43" fill="#789181"/>
+      <rect x="184" y="202" width="12" height="58" fill="#63766C"/>
+      <circle cx="245" cy="222" r="30" fill="#9AB0A2"/>
+      <rect x="240" y="224" width="10" height="40" fill="#63766C"/>
+    </g>
+
+    <path d="M393 454C476 364 565 306 676 282C760 264 850 268 1010 302" fill="none" stroke="#FFF9F1" stroke-width="34" stroke-linecap="round"/>
+    <path d="M393 454C476 364 565 306 676 282C760 264 850 268 1010 302" fill="none" stroke="#B46E60" stroke-width="5" stroke-linecap="round" stroke-dasharray="14 22"/>
+
+    <g transform="translate(690 25)">
+      <rect x="0" y="138" width="80" height="207" fill="#7B9386"/>
+      <rect x="94" y="68" width="102" height="277" fill="#526A60"/>
+      <rect x="211" y="118" width="72" height="227" fill="#91A69B"/>
+      <rect x="298" y="0" width="92" height="345" fill="#637D70"/>
+      <path d="M344 -72L366 0H322Z" fill="#637D70"/>
+      <rect x="405" y="95" width="72" height="250" fill="#B37264"/>
+      <g fill="#F8EEE3">
+        <rect x="20" y="170" width="13" height="18"/><rect x="49" y="170" width="13" height="18"/>
+        <rect x="20" y="210" width="13" height="18"/><rect x="49" y="210" width="13" height="18"/>
+        <rect x="116" y="102" width="15" height="20"/><rect x="158" y="102" width="15" height="20"/>
+        <rect x="116" y="150" width="15" height="20"/><rect x="158" y="150" width="15" height="20"/>
+        <rect x="116" y="198" width="15" height="20"/><rect x="158" y="198" width="15" height="20"/>
+        <rect x="323" y="42" width="16" height="21"/><rect x="365" y="42" width="16" height="21"/>
+        <rect x="323" y="95" width="16" height="21"/><rect x="365" y="95" width="16" height="21"/>
+        <rect x="323" y="148" width="16" height="21"/><rect x="365" y="148" width="16" height="21"/>
+        <rect x="426" y="130" width="13" height="18"/><rect x="454" y="130" width="13" height="18"/>
+        <rect x="426" y="175" width="13" height="18"/><rect x="454" y="175" width="13" height="18"/>
+      </g>
+    </g>
+
+    <g transform="translate(512 250)">
+      <circle cx="0" cy="0" r="23" fill="#B46E60"/>
+      <path d="M0 27C-38 49-45 113-23 174H23C45 113 38 49 0 27Z" fill="#566F63"/>
+      <path d="M-16 174L-38 242" stroke="#34443E" stroke-width="16" stroke-linecap="round"/>
+      <path d="M16 174L38 242" stroke="#34443E" stroke-width="16" stroke-linecap="round"/>
+    </g>
+  </g>
+
+  <g font-family="PingFang SC, Hiragino Sans GB, Microsoft YaHei, sans-serif">
+    <rect x="92" y="1350" width="896" height="2" fill="#8DA095"/>
+    <text x="92" y="1395" fill="#65756D" font-size="25" font-weight="600">适合你的城市，不一定最繁华，但一定能让努力和生活彼此成全。</text>
+  </g>
+</svg>
