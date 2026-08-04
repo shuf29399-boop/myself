@@ -12,17 +12,17 @@ echo "如果看到 Generate new token，请选择 classic token。"
 echo "权限只需要勾选 repo。"
 echo ""
 
-printf "GitHub 用户名，直接回车默认 shufan-art："
+printf "GitHub 用户名，直接回车默认 shuf29399-boop："
 read username
 if [ -z "$username" ]; then
-  username="shufan-art"
+  username="shuf29399-boop"
 fi
 
 if [[ "$username" == ghp_* || "$username" == github_pat_* ]]; then
   echo ""
   echo "你把 Token 粘到了用户名这里。"
   echo "请关闭窗口，重新运行本脚本。"
-  echo "用户名这里应该填：shufan-art"
+  echo "用户名这里应该填：shuf29399-boop"
   echo "Token 要粘贴到下一步的 Token 输入框。"
   echo ""
   echo "按回车键关闭窗口。"
@@ -46,7 +46,7 @@ fi
 printf "protocol=https\nhost=github.com\nusername=%s\n\n" "$username" | git credential-osxkeychain erase
 printf "protocol=https\nhost=github.com\n\n" | git credential-osxkeychain erase
 printf "protocol=https\nhost=github.com\nusername=%s\npassword=%s\n\n" "$username" "$token" | git credential-osxkeychain store
-git remote set-url origin "https://${username}@github.com/shufan-art/shufan.git"
+git remote set-url origin "https://${username}@github.com/shuf29399-boop/myself.git"
 
 echo ""
 echo "授权信息已保存到系统钥匙串。"

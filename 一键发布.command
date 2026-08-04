@@ -2,7 +2,7 @@
 cd "$(dirname "$0")"
 
 echo "开始一键发布..."
-echo "目标网站：https://shufan-art.github.io/shufan/"
+echo "目标网站：https://shuf29399-boop.github.io/myself/"
 echo ""
 
 python3 publish_to_github_pages.py
@@ -11,7 +11,7 @@ if [ -d "site" ]; then
   cp -R site/. .
 fi
 
-git remote set-url origin "https://shufan-art@github.com/shufan-art/shufan.git"
+git remote set-url origin "https://shuf29399-boop@github.com/shuf29399-boop/myself.git"
 
 git add index.html .nojekyll tests site generate_test.py generate_10_hot_tests.py publish_to_github_pages.py "网页上传版/index.html" "网页上传版/test_config.json" "爆款标题测试题库10套.md" 2>/dev/null
 
@@ -31,7 +31,7 @@ if git push -u origin main --force; then
   echo ""
   echo "发布成功！"
   echo "等 30 秒到 2 分钟后打开："
-  echo "https://shufan-art.github.io/shufan/"
+  echo "https://shuf29399-boop.github.io/myself/"
 else
   echo ""
   echo "发布失败。"
