@@ -119,19 +119,32 @@ def main():
     (page_dir / "test_config.json").write_text(json.dumps(data, ensure_ascii=False, indent=2), encoding="utf-8")
     background_css = """
   <style>
+    @import url('https://cdn.jsdelivr.net/npm/lxgw-wenkai-webfont@1.7.0/lxgwwenkai-regular.css');
+    @import url('https://cdn.jsdelivr.net/npm/lxgw-wenkai-webfont@1.7.0/lxgwwenkai-bold.css');
+    html { background: #f3f0e7; }
     body {
-      font-family: "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", sans-serif;
+      font-family: "LXGW WenKai", "PingFang SC", "Microsoft YaHei", sans-serif;
       color: #334037;
+      background: transparent;
+    }
+    body::before {
+      content: "";
+      position: fixed;
+      inset: 0;
+      z-index: 0;
+      pointer-events: none;
+      opacity: 1;
       background-image:
         linear-gradient(rgba(255, 252, 244, 0.76), rgba(242, 246, 237, 0.82)),
         url('city-background.png');
       background-position: center top;
-      background-size: cover;
-      background-attachment: fixed;
+      background-size: auto 100vh;
+      background-repeat: no-repeat;
+      background-color: #f3f0e7;
     }
-    body::before { opacity: 0.42; }
+    .page { position: relative; z-index: 1; }
     h1, .report-name {
-      font-family: "Songti SC", "STSong", "Noto Serif CJK SC", serif;
+      font-family: "LXGW WenKai", "Songti SC", serif;
       color: #29382f;
       font-weight: 800;
       letter-spacing: 0.055em;
@@ -143,14 +156,14 @@ def main():
     }
     .tag {
       color: #7b7456;
-      font-family: "Avenir Next", "PingFang SC", sans-serif;
+      font-family: "LXGW WenKai", "PingFang SC", sans-serif;
       font-size: 13px;
       font-weight: 700;
       letter-spacing: 0.24em;
     }
     .subtitle {
       color: #59685e;
-      font-family: "Songti SC", "STSong", serif;
+      font-family: "LXGW WenKai", "Songti SC", serif;
       font-weight: 600;
       letter-spacing: 0.025em;
     }
@@ -159,7 +172,7 @@ def main():
     }
     .question {
       color: #2f3e35;
-      font-family: "Songti SC", "STSong", serif;
+      font-family: "LXGW WenKai", "Songti SC", serif;
       font-size: 22px;
       line-height: 1.65;
       letter-spacing: 0.025em;
@@ -174,7 +187,7 @@ def main():
     }
     .gold-line {
       color: #8a7043;
-      font-family: "Songti SC", "STSong", serif;
+      font-family: "LXGW WenKai", "Songti SC", serif;
       font-size: 18px;
       line-height: 1.75;
     }
@@ -195,7 +208,7 @@ def main():
       -webkit-backdrop-filter: blur(16px);
     }
     @media (max-width: 520px) {
-      body { background-attachment: scroll; background-position: center top; }
+      body::before { background-position: center top; background-size: auto 100vh; }
       .intro-panel { padding: 22px; }
     }
   </style>
