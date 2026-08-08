@@ -21,9 +21,10 @@ Trigger this workflow whenever the user says “心理测试”, “生成心理
 5. Use the latest result-page format by default: a themed “专属报告” page with index score, core conclusion, screenshot-friendly quote, and full report demo shown directly without requiring payment.
 6. Match report-page colors to the test theme. Romance/emotion tests use soft pink/cream; career/money/life tests use cream, gray-green, and restrained neutral tones.
 7. Keep paid-report logic available conceptually, but do not force payment in demo pages unless the user explicitly asks to add a payment or lock step.
-8. Run the publishing preparation step, copy `site/` to the repo root, and validate local files.
-9. Commit local changes. Only push to GitHub when network and credentials allow it.
-10. If publishing fails, diagnose credentials, network, permission, or branch divergence before changing page content.
+8. Create or update one all-in-one Markdown text package for each generated test under `01_测试完整文本库/`. Each package should include the test title, public link, local page path, intro copy, dimensions, all questions and options, result types, full report demo copy, Xiaohongshu publishing copy, cover image path if available, and a follow-up optimization log.
+9. Run the publishing preparation step, copy `site/` to the repo root, and validate local files.
+10. Commit local changes. Only push to GitHub when network and credentials allow it.
+11. If publishing fails, diagnose credentials, network, permission, or branch divergence before changing page content.
 
 ## Project Defaults
 
