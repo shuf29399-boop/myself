@@ -8,7 +8,7 @@ from generate_test import render_html
 ROOT = Path(__file__).parent
 SOURCE = ROOT / "tests" / "city-fit" / "test_config.json"
 SLUG = "city-blessing"
-TITLE = "哪个城市最旺你？"
+TITLE = "哪个城市最旺你"
 
 
 def build_config():
