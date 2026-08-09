@@ -872,112 +872,128 @@
       "hero": "阿伽门农",
       "gift": "组织、决断与承担大局",
       "shadow": "容易把胜利置于感受之上",
-      "quest": "让目标与团队的真实需要同时被看见"
+      "quest": "让目标与团队的真实需要同时被看见",
+      "image": "characters/BGAF-agamemnon.png"
     },
     "BGAR": {
       "name": "破局征服者",
       "hero": "伊阿宋",
       "gift": "召集资源、开创新局面",
       "shadow": "可能为了目标忽略过程中的代价",
-      "quest": "选择值得征服的远方，而不是被野心驱赶"
+      "quest": "选择值得征服的远方，而不是被野心驱赶",
+      "image": "characters/BGAR-jason.png"
     },
     "BGSF": {
       "name": "荣耀战士",
       "hero": "阿喀琉斯",
       "gift": "勇气、爆发力与极致投入",
       "shadow": "自尊容易成为最敏感的软肋",
-      "quest": "把力量用于真正重要的战斗"
+      "quest": "把力量用于真正重要的战斗",
+      "image": "characters/BGSF-achilles.png"
     },
     "BGSR": {
       "name": "狂飙挑战者",
       "hero": "柏勒洛丰",
       "gift": "敢于挑战不可能",
       "shadow": "成功之后容易被更大的证明欲牵引",
-      "quest": "在起飞前先确认自己为何出发"
+      "quest": "在起飞前先确认自己为何出发",
+      "image": "characters/BGSR-bellerophon.png"
     },
     "BHAF": {
       "name": "城墙守护者",
       "hero": "赫克托耳",
       "gift": "忠诚、责任感与保护力量",
       "shadow": "容易把自己的需要放到最后",
-      "quest": "守护他人时，也为自己留下退路"
+      "quest": "守护他人时，也为自己留下退路",
+      "image": "characters/BHAF-hector.png"
     },
     "BHAR": {
       "name": "热血救援者",
       "hero": "忒修斯",
       "gift": "行动果断、愿意为人解决危机",
       "shadow": "可能在情绪推动下接下不属于自己的战斗",
-      "quest": "先分清使命与冲动，再进入迷宫"
+      "quest": "先分清使命与冲动，再进入迷宫",
+      "image": "characters/BHAR-theseus.png"
     },
     "BHSF": {
       "name": "使命行动者",
       "hero": "珀尔修斯",
       "gift": "目标清楚、关键时刻敢出手",
       "shadow": "习惯替别人承担过多责任",
-      "quest": "只接受真正属于你的英雄任务"
+      "quest": "只接受真正属于你的英雄任务",
+      "image": "characters/BHSF-perseus.png"
     },
     "BHSR": {
       "name": "自由猎手",
       "hero": "阿塔兰忒",
       "gift": "独立、专注与清晰边界",
       "shadow": "太习惯独自奔跑，不容易接受帮助",
-      "quest": "自由地前进，也自由地与人同行"
+      "quest": "自由地前进，也自由地与人同行",
+      "image": "characters/BHSR-atalanta.png"
     },
     "WGAF": {
       "name": "智慧领航者",
       "hero": "涅斯托耳",
       "gift": "统筹全局、提供成熟判断",
       "shadow": "过度稳妥时可能错过行动窗口",
-      "quest": "让智慧成为启程的灯，而不是停留的理由"
+      "quest": "让智慧成为启程的灯，而不是停留的理由",
+      "image": "characters/WGAF-nestor.png"
     },
     "WGAR": {
       "name": "文明盗火者",
       "hero": "普罗米修斯",
       "gift": "远见、创新和改变旧秩序",
       "shadow": "容易独自承受改变带来的代价",
-      "quest": "在改变世界之前先建立可持续的同盟"
+      "quest": "在改变世界之前先建立可持续的同盟",
+      "image": "characters/WGAR-prometheus.png"
     },
     "WGSF": {
       "name": "孤高建造者",
       "hero": "代达罗斯",
       "gift": "创造、设计与解决技术难题",
       "shadow": "聪明可能制造更复杂的迷宫",
-      "quest": "不要只建造出口，也要确认它通向哪里"
+      "quest": "不要只建造出口，也要确认它通向哪里",
+      "image": "characters/WGSF-daedalus.png"
     },
     "WGSR": {
       "name": "命运博弈者",
       "hero": "西西弗斯",
       "gift": "韧性、洞察规则并寻找缝隙",
       "shadow": "容易把反抗变成无休止的执念",
-      "quest": "选择值得重复的坚持，也允许自己放下石头"
+      "quest": "选择值得重复的坚持，也允许自己放下石头",
+      "image": "characters/WGSR-sisyphus.png"
     },
     "WHAF": {
       "name": "温柔导师",
       "hero": "喀戎",
       "gift": "理解、疗愈与帮助他人成长",
       "shadow": "能治愈别人，却常忽略自己的伤口",
-      "quest": "把给予自己的关怀放回生命中心"
+      "quest": "把给予自己的关怀放回生命中心",
+      "image": "characters/WHAF-chiron.png"
     },
     "WHAR": {
       "name": "灵魂歌者",
       "hero": "俄耳甫斯",
       "gift": "感受力、创造力与深度连接",
       "shadow": "容易为了挽回失去而困在回望中",
-      "quest": "相信爱，也接受有些旅程需要继续向前"
+      "quest": "相信爱，也接受有些旅程需要继续向前",
+      "image": "characters/WHAR-orpheus.png"
     },
     "WHSF": {
       "name": "归航谋略家",
       "hero": "奥德修斯",
       "gift": "适应、判断与穿越复杂局面",
       "shadow": "想得太远，可能错过眼前真实感受",
-      "quest": "真正的归航是知道自己为何坚持"
+      "quest": "真正的归航是知道自己为何坚持",
+      "image": "characters/WHSF-odysseus.png"
     },
     "WHSR": {
       "name": "荒野预言者",
       "hero": "卡珊德拉",
       "gift": "直觉、独立洞察与识别风险",
       "shadow": "看得太清楚时容易产生无人理解感",
-      "quest": "把预见转化成可以被听见的表达"
+      "quest": "把预见转化成可以被听见的表达",
+      "image": "characters/WHSR-cassandra.png"
     }
   }
 }

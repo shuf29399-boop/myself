@@ -84,6 +84,25 @@ RESULTS = {
     "WHSR": ("荒野预言者", "卡珊德拉", "直觉、独立洞察与识别风险", "看得太清楚时容易产生无人理解感", "把预见转化成可以被听见的表达"),
 }
 
+RESULT_IMAGES = {
+    "BGAF": "BGAF-agamemnon.png",
+    "BGAR": "BGAR-jason.png",
+    "BGSF": "BGSF-achilles.png",
+    "BGSR": "BGSR-bellerophon.png",
+    "BHAF": "BHAF-hector.png",
+    "BHAR": "BHAR-theseus.png",
+    "BHSF": "BHSF-perseus.png",
+    "BHSR": "BHSR-atalanta.png",
+    "WGAF": "WGAF-nestor.png",
+    "WGAR": "WGAR-prometheus.png",
+    "WGSF": "WGSF-daedalus.png",
+    "WGSR": "WGSR-sisyphus.png",
+    "WHAF": "WHAF-chiron.png",
+    "WHAR": "WHAR-orpheus.png",
+    "WHSF": "WHSF-odysseus.png",
+    "WHSR": "WHSR-cassandra.png",
+}
+
 
 def build_config():
     questions = []
@@ -105,7 +124,7 @@ def build_config():
         "subtitle": "32 道题，解锁你的四字母英雄原型",
         "dimensions": [{k: d[k] for k in ("key", "left", "right", "left_name", "right_name")} for d in DIMENSIONS],
         "questions": questions,
-        "results": {k: {"name": v[0], "hero": v[1], "gift": v[2], "shadow": v[3], "quest": v[4]} for k, v in RESULTS.items()},
+        "results": {k: {"name": v[0], "hero": v[1], "gift": v[2], "shadow": v[3], "quest": v[4], "image": f"characters/{RESULT_IMAGES[k]}"} for k, v in RESULTS.items()},
     }
 
 
@@ -128,6 +147,7 @@ button{{font:inherit;cursor:pointer}}.primary{{width:100%;border:0;border-radius
 .hidden{{display:none}}.count{{font-size:14px;color:#817a6d}}.progress{{height:7px;background:#ded8ca;border-radius:99px;margin:13px 0 22px;overflow:hidden}}.bar{{height:100%;background:linear-gradient(90deg,#ae8240,#31596a);width:0;transition:.25s}}
 .question{{font-size:22px;font-weight:700;margin-bottom:18px;color:#263b44}}.option{{display:block;width:100%;text-align:left;margin:10px 0;padding:14px 16px;border:1px solid #c9b98f;background:rgba(255,255,255,.78);border-radius:12px;color:#30393a;font-size:16px}}.option:hover{{border-color:#8d6d35;background:#fffaf0}}
 .back{{border:0;background:transparent;color:#756442;margin-top:12px}}.code{{font-family:Georgia,serif;letter-spacing:.22em;color:#a1712b;font-size:20px;font-weight:700;text-align:center}}.result-name{{font-size:40px;line-height:1.2;text-align:center;color:#263b44;font-weight:700;margin:10px 0}}.hero-name{{text-align:center;color:#756442;font-size:18px}}
+.hero-portrait{{display:block;width:min(440px,100%);aspect-ratio:4/5;object-fit:cover;margin:22px auto 8px;border-radius:22px;border:1px solid rgba(138,112,65,.34);box-shadow:0 20px 46px rgba(42,51,53,.18);background:#f7f0df}}
 .quote{{text-align:center;font-size:20px;color:#8a5d2c;margin:24px 0;font-weight:700}}.metrics{{display:grid;gap:12px;margin:24px 0}}.metric-row{{display:grid;grid-template-columns:78px 1fr 78px;gap:10px;align-items:center;font-size:14px}}.metric-left{{text-align:left}}.metric-right{{text-align:right}}.track{{height:9px;background:#d8d4ca;border-radius:99px;overflow:hidden}}.fill{{height:100%;background:linear-gradient(90deg,#b18a4b,#31596a)}}
 .section{{border-top:1px solid #d6cab0;padding-top:16px;margin-top:16px}}.section b{{color:#74592d}}.dimension-help{{display:grid;gap:10px;margin-top:12px}}.help-item{{padding:12px 14px;border-radius:10px;background:rgba(235,229,214,.6);font-size:15px}}.help-item strong{{color:#31596a}}.actions{{margin-top:24px}}.notice{{font-size:13px;color:#77746b;margin-top:18px;text-align:center}}@media(max-width:520px){{.page{{padding:28px 16px 44px}}.panel{{padding:21px}}.question{{font-size:20px}}}}
 </style></head><body><main class="page"><section class="hero"><div class="eyebrow">HELLENIC HERO ARCHETYPE</div><h1>{TITLE}</h1><div class="subtitle">32 道题，解锁你的四字母英雄原型</div></section>
@@ -135,7 +155,7 @@ button{{font:inherit;cursor:pointer}}.primary{{width:100%;border:0;border-radius
 <section id="quiz" class="panel hidden"><div id="count" class="count"></div><div class="progress"><div id="bar" class="bar"></div></div><div id="question" class="question"></div><div id="options"></div><button class="back" onclick="back()">← 上一题</button></section>
 <section id="result" class="panel hidden"></section><div class="notice">生成日期：{generated}</div></main>
 <script>const TEST={payload};let current=0,answers=[];function show(id){{['start','quiz','result'].forEach(x=>document.getElementById(x).classList.add('hidden'));document.getElementById(id).classList.remove('hidden')}}function startTest(){{current=0;answers=[];show('quiz');render()}}function render(){{let q=TEST.questions[current];count.textContent=`第 ${{current+1}} / ${{TEST.questions.length}} 题`;bar.style.width=`${{current/TEST.questions.length*100}}%`;question.textContent=q.text;options.innerHTML=q.options.map((o,i)=>`<button class="option" onclick="choose(${{i}})">${{String.fromCharCode(65+i)}}. ${{o.text}}</button>`).join('')}}function choose(i){{answers[current]=TEST.questions[current].options[i];if(current<TEST.questions.length-1){{current++;render()}}else result()}}function back(){{if(current===0)show('start');else{{current--;render()}}}}
-function result(){{let score={{B:0,W:0,G:0,H:0,A:0,S:0,F:0,R:0}};answers.forEach(a=>score[a.side]+=a.weight);let code=(score.B>=score.W?'B':'W')+(score.G>=score.H?'G':'H')+(score.A>=score.S?'A':'S')+(score.F>=score.R?'F':'R');let r=TEST.results[code];let dims=TEST.dimensions.map(d=>{{let total=score[d.left]+score[d.right],left=Math.round(score[d.left]/total*100),right=100-left;return `<div class="metric-row"><span class="metric-left">${{d.left_name}} ${{left}}%</span><div class="track"><div class="fill" style="width:${{left}}%"></div></div><span class="metric-right">${{right}}% ${{d.right_name}}</span></div>`}}).join('');let gold={{B:'你敢于进入战场',W:'你善于穿过迷雾',G:'你渴望留下荣耀',H:'你忠于内心回声',A:'你相信并肩的力量',S:'你守住独立的方向',F:'你愿意完成命运课题',R:'你敢于改写既定剧本'}};document.getElementById('result').innerHTML=`<div class="code">${{code}}</div><div class="result-name">${{r.name}}</div><div class="hero-name">代表原型 · ${{r.hero}}</div><div class="quote">「${{code.split('').map(x=>gold[x]).join('，')}}。」</div><div class="metrics">${{dims}}</div><div class="section"><b>四种人格倾向</b><div class="dimension-help"><div class="help-item"><strong>战斗方式｜剑锋 B · 智谋 W</strong><br>看你面对问题时，更习惯立即行动、正面突破，还是先观察局势、制定策略。</div><div class="help-item"><strong>行动动力｜荣耀 G · 内心 H</strong><br>看推动你前进的力量，更来自成就、认可和自我证明，还是感情、信念与真实感受。</div><div class="help-item"><strong>关系模式｜结盟 A · 独行 S</strong><br>看你更容易通过合作、连接获得力量，还是依靠个人判断和独立空间保持稳定。</div><div class="help-item"><strong>命运态度｜承命 F · 逆命 R</strong><br>看你倾向于接受责任、完成既定课题，还是质疑安排、亲自改写人生路线。</div></div></div><div class="section"><b>神话级天赋</b><br>${{r.gift}}</div><div class="section"><b>你的阿喀琉斯之踵</b><br>${{r.shadow}}</div><div class="section"><b>当前英雄任务</b><br>${{r.quest}}</div><div class="section"><b>未来 7 天建议</b><br>选择一件你一直回避、但与当前英雄任务有关的小事，把它拆成一次可以在七天内完成的行动。英雄人格不是命运标签，而是提醒你如何使用自己的力量。</div><div class="actions"><button class="primary" onclick="startTest()">重新测试</button></div>`;show('result')}}</script></body></html>'''
+function result(){{let score={{B:0,W:0,G:0,H:0,A:0,S:0,F:0,R:0}};answers.forEach(a=>score[a.side]+=a.weight);let code=(score.B>=score.W?'B':'W')+(score.G>=score.H?'G':'H')+(score.A>=score.S?'A':'S')+(score.F>=score.R?'F':'R');let r=TEST.results[code];let dims=TEST.dimensions.map(d=>{{let total=score[d.left]+score[d.right],left=Math.round(score[d.left]/total*100),right=100-left;return `<div class="metric-row"><span class="metric-left">${{d.left_name}} ${{left}}%</span><div class="track"><div class="fill" style="width:${{left}}%"></div></div><span class="metric-right">${{right}}% ${{d.right_name}}</span></div>`}}).join('');let gold={{B:'你敢于进入战场',W:'你善于穿过迷雾',G:'你渴望留下荣耀',H:'你忠于内心回声',A:'你相信并肩的力量',S:'你守住独立的方向',F:'你愿意完成命运课题',R:'你敢于改写既定剧本'}};document.getElementById('result').innerHTML=`<div class="code">${{code}}</div><div class="result-name">${{r.name}}</div><div class="hero-name">代表原型 · ${{r.hero}}</div><img class="hero-portrait" src="${{r.image}}" alt="${{r.hero}}动画人物卡"><div class="quote">「${{code.split('').map(x=>gold[x]).join('，')}}。」</div><div class="metrics">${{dims}}</div><div class="section"><b>四种人格倾向</b><div class="dimension-help"><div class="help-item"><strong>战斗方式｜剑锋 B · 智谋 W</strong><br>看你面对问题时，更习惯立即行动、正面突破，还是先观察局势、制定策略。</div><div class="help-item"><strong>行动动力｜荣耀 G · 内心 H</strong><br>看推动你前进的力量，更来自成就、认可和自我证明，还是感情、信念与真实感受。</div><div class="help-item"><strong>关系模式｜结盟 A · 独行 S</strong><br>看你更容易通过合作、连接获得力量，还是依靠个人判断和独立空间保持稳定。</div><div class="help-item"><strong>命运态度｜承命 F · 逆命 R</strong><br>看你倾向于接受责任、完成既定课题，还是质疑安排、亲自改写人生路线。</div></div></div><div class="section"><b>神话级天赋</b><br>${{r.gift}}</div><div class="section"><b>你的阿喀琉斯之踵</b><br>${{r.shadow}}</div><div class="section"><b>当前英雄任务</b><br>${{r.quest}}</div><div class="section"><b>未来 7 天建议</b><br>选择一件你一直回避、但与当前英雄任务有关的小事，把它拆成一次可以在七天内完成的行动。英雄人格不是命运标签，而是提醒你如何使用自己的力量。</div><div class="actions"><button class="primary" onclick="startTest()">重新测试</button></div>`;show('result')}}</script></body></html>'''
 
 
 def build_markdown(data):
